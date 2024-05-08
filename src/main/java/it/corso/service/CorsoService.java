@@ -8,6 +8,6 @@ public interface CorsoService {
 
 		CorsoDto getCorso(int id);
 		List<CorsoDto> getAllCorsi();
-		void createCorso(CorsoDto corsoDto);
+		boolean createCorso(CorsoDto corsoDto);
 		void deleteCorso(int id);
 }

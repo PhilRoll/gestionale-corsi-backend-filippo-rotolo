@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -17,8 +18,8 @@ import it.corso.jwt.Secured;
 import it.corso.service.CorsoService;
 
 @Path("/corso")
-@Secured(role = "Admin")
-@JWTTokenNeeded
+//@Secured(role = "Admin")
+//@JWTTokenNeeded
 public class CorsoController {
 
 	@Autowired
@@ -43,13 +44,18 @@ public class CorsoController {
 	}
 	
 	
+	
 	@POST
 	@Path("/crea")
+	//@Secured(role = "Admin")
+	//@JWTTokenNeeded
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createCorso(CorsoDto corsoDto){
 		try {
-			corsoService.createCorso(corsoDto);
-			return Response.status(Response.Status.OK).build();
+			if(corsoService.createCorso(corsoDto)) {
+				return Response.status(Response.Status.OK).build();
+			}
+			return Response.status(Response.Status.BAD_REQUEST).build();
 		} catch (Exception e) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}

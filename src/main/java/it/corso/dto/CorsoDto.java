@@ -4,13 +4,21 @@ import java.util.List;
 
 public class CorsoDto {
 
+	private int id;
 	private String nomeCorso;
 	private String descrizioneBreve;
 	private String descrizioneCompleta;
 	private int durata; 
 	private int idCategoria;
-	List<CorsoUtenteDto> utenti;
+	//List<CorsoUtenteDto> utenti;
 	
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getNomeCorso() {
 		return nomeCorso;
 	}
@@ -41,12 +49,8 @@ public class CorsoDto {
 	public void setIdCategoria(int idCategoria) {
 		this.idCategoria = idCategoria;
 	}
-	public List<CorsoUtenteDto> getUtenti() {
-		return utenti;
-	}
-	public void setUtenti(List<CorsoUtenteDto> utenti) {
-		this.utenti = utenti;
-	}
+
+	
 	
 	
 	

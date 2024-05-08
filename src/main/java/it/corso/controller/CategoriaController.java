@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import it.corso.dto.CategoriaDto;
+import it.corso.jwt.JWTTokenNeeded;
+import it.corso.jwt.Secured;
 import it.corso.service.CategoriaService;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;

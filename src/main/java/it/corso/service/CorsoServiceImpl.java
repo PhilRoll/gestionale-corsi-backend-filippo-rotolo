@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 import it.corso.dao.CategoriaDao;
 import it.corso.dao.CorsoDao;
 import it.corso.dto.CorsoDto;
+import it.corso.dto.UtenteDto;
 import it.corso.model.Categoria;
 import it.corso.model.Corso;
+import it.corso.model.Utente;
 
 
 @Service
@@ -43,16 +45,17 @@ public class CorsoServiceImpl implements CorsoService {
 	@Override
 	 public List<CorsoDto> getAllCorsi() {
 	  
-	  List<Corso> corso =  (List<Corso>) corsoDao.findAll();
-	  List<CorsoDto> corsoDto = new ArrayList<>();
-	  corso.forEach(c -> corsoDto.add(mapper.map(c, CorsoDto.class)));
+	  List<Corso> listaCorsi =  (List<Corso>) corsoDao.findAll();
+	  List<CorsoDto> listaCorsiDto = new ArrayList<>();
+	  listaCorsi.forEach(c -> listaCorsiDto.add(mapper.map(c, CorsoDto.class)));
 	  
-	  return corsoDto;
+	  return listaCorsiDto;
 	 }
 
+	
 
 	@Override
-	public void createCorso(CorsoDto corsoDto) {
+	public boolean createCorso(CorsoDto corsoDto) {
 		Optional<Categoria> categoriaDb = categoriaDao.findById(corsoDto.getIdCategoria());
 		if(categoriaDb.isPresent()) {
 			Categoria categoria = categoriaDb.get();
@@ -65,8 +68,9 @@ public class CorsoServiceImpl implements CorsoService {
 			corso.setCategoria(categoria);
 			
 			corsoDao.save(corso);
+			return true;
 		}
-		
+		return false;
 	}
 
 
